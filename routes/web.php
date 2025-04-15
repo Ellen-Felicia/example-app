@@ -50,6 +50,46 @@ Route::get('/jobs/{id}/edit', function ($id) {
     return view('jobs.edit', ['job' => $job]);
  });
 
+//Update
+Route::patch('/jobs/{id}', function ($id) {
+    // Validate the request
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required']
+    ]);
+    //Authorize the user
+
+    //Update the job
+    $job = Job::findOrFail($id); //Declaração de variavel
+
+    // $job->title = request('title');
+    // $job->salary = request('salary');
+    // $job->save();
+
+    //Or use the update method
+
+    $job->update([
+        'title' => request('title'),
+        'salary' => request('salary')
+    ]);
+     
+    //Redirect 
+    return redirect('/jobs/'. $job->id);
+ });
+
+//Delete
+Route::delete('/jobs/{id}', function ($id) {
+   //Authorize the user
+
+   //Delete the job
+    $job = Job::findOrFail($id);
+    $job->delete();
+
+   //Redirect
+   return redirect('/jobs');
+
+ });
+
 Route::get('/contact', function () {
     return view('contact');
 });
