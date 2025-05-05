@@ -13,6 +13,7 @@
      {
          Schema::create('employers', function (Blueprint $table) {
              $table->id();
+             $table->foreignIdFor(\App\Models\Job::class);
              $table->string('name');
              $table->timestamps();
          });
