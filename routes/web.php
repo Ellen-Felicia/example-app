@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\RegisteredUserController;
-
 use Illuminate\Support\Facades\Route;
-
-
 use App\Models\Job;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('test', function(){
+
+});
 
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
