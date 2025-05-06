@@ -42,7 +42,7 @@
              'employer_id' => 1 //
          ]);
 
-         Mail::to($job->employer->user)->send(
+         Mail::to($job->employer->user)->queue(
             new \App\Mail\JobPosted($job)
         );
         return 'Email sent';
