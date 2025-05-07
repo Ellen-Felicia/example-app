@@ -7,6 +7,7 @@
  use Illuminate\Support\Facades\Auth;
  use Illuminate\Support\Facades\Gate;
  use Illuminate\Support\Facades\Mail;
+ use App\Models\Employer;
  
  class JobController extends Controller
  {
@@ -39,13 +40,13 @@
          $job = Job::create([
              'title' => request('title'),
              'salary' => request('salary'),
-             'employer_id' => 1 //
+             'employer_id' => Employer::where('user_id', Auth::id())->value('id'),
          ]);
 
          Mail::to($job->employer->user)->queue(
             new \App\Mail\JobPosted($job)
         );
-        return 'Email sent';
+        // return 'Email sent';
  
          return redirect('/jobs');
      }

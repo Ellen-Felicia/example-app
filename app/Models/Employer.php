@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
      use HasFactory;
 
    //   public function employer(){
-   //       return $this->belongsTo(Employer::class);
+   //       return $this->hasOne(Employer::class);
    //   }
 
      public function jobs(){
